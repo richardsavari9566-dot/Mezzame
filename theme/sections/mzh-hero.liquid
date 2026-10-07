@@ -1,0 +1,115 @@
+{%- comment -%} Mezzame homepage hero: full-bleed slider sitting under Horizon's transparent header. {%- endcomment -%}
+<section
+  class="mzh mzh-hero"
+  data-mzh="hero"
+  data-autoplay="{{ section.settings.autoplay_seconds }}"
+  aria-roledescription="carousel"
+  aria-label="{{ section.settings.aria_label | escape }}"
+>
+  {%- for block in section.blocks -%}
+    <article
+      class="mzh-hero__slide{% if forloop.first %} is-active{% endif %}"
+      aria-roledescription="slide"
+      aria-label="{{ forloop.index }} / {{ forloop.length }}"
+      {{ block.shopify_attributes }}
+    >
+      {%- if block.settings.image != blank -%}
+        {%- liquid
+          if forloop.first
+            assign loading = 'eager'
+            assign priority = 'high'
+          else
+            assign loading = 'lazy'
+            assign priority = 'auto'
+          endif
+          assign position = block.settings.image.presentation.focal_point | default: '50% 50%'
+          assign image_style = 'object-position: ' | append: position
+        -%}
+        {{
+          block.settings.image
+          | image_url: width: 2400
+          | image_tag:
+            widths: '750, 1100, 1500, 1800, 2400',
+            sizes: '100vw',
+            loading: loading,
+            fetchpriority: priority,
+            alt: block.settings.image.alt,
+            style: image_style
+        }}
+      {%- else -%}
+        <div class="mzh-media-empty" role="presentation"></div>
+      {%- endif -%}
+      <div class="mzh-container mzh-hero__content">
+        <div class="mzh-hero__copy">
+          {%- if block.settings.kicker != blank -%}
+            <div class="mzh-hero__kicker">{{ block.settings.kicker }}</div>
+          {%- endif -%}
+          {%- if forloop.first -%}
+            <h1 class="mzh-hero__title">{{ block.settings.heading | newline_to_br }}</h1>
+          {%- else -%}
+            <h2 class="mzh-hero__title">{{ block.settings.heading | newline_to_br }}</h2>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="mzh-hero__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+          <div class="mzh-hero__ctas">
+            {%- if block.settings.button_1_label != blank -%}
+              <a class="mzh-btn mzh-btn--light" href="{{ block.settings.button_1_link | default: '#' }}">
+                {{- block.settings.button_1_label -}}
+              </a>
+            {%- endif -%}
+            {%- if block.settings.button_2_label != blank -%}
+              <a class="mzh-btn mzh-btn--outline" href="{{ block.settings.button_2_link | default: '#' }}">
+                {{- block.settings.button_2_label -}}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </article>
+  {%- endfor -%}
+
+  {%- if section.blocks.size > 1 -%}
+    <div class="mzh-hero__controls">
+      <button type="button" class="mzh-round" data-mzh-prev aria-label="Previous slide">←</button>
+      <button type="button" class="mzh-round" data-mzh-next aria-label="Next slide">→</button>
+    </div>
+    <div class="mzh-hero__dots">
+      {%- for block in section.blocks -%}
+        <button
+          type="button"
+          class="mzh-hero__dot{% if forloop.first %} is-active{% endif %}"
+          aria-label="Show slide {{ forloop.index }}"
+        ></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Mezzame hero",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Accessible label", "default": "Mezzame featured celebrations" },
+    { "type": "range", "id": "autoplay_seconds", "label": "Auto-rotate every", "min": 0, "max": 12, "step": 1, "unit": "s", "default": 7, "info": "0 turns auto-rotate off." }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "kicker", "label": "Kicker" },
+        { "type": "textarea", "id": "heading", "label": "Heading", "info": "Use a line break to split the heading." },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_1_label", "label": "Primary button label" },
+        { "type": "url", "id": "button_1_link", "label": "Primary button link" },
+        { "type": "text", "id": "button_2_label", "label": "Secondary button label" },
+        { "type": "url", "id": "button_2_link", "label": "Secondary button link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mezzame hero", "blocks": [{ "type": "slide" }] }]
+}
+{% endschema %}

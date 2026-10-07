@@ -1,0 +1,26 @@
+{%- comment -%} Scrolling trust strip. Items are rendered twice so the marquee loops seamlessly. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <section class="mzh mzh-trust" aria-label="{{ section.settings.aria_label | escape }}">
+    <div class="mzh-trust__track">
+      {%- for block in section.blocks -%}
+        <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+      {%- endfor -%}
+      {%- for block in section.blocks -%}
+        <span aria-hidden="true">{{ block.settings.text }}</span>
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mezzame trust strip",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Accessible label", "default": "Why customers choose Mezzame" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Trust point", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Freshly Baked Daily" }] }
+  ],
+  "presets": [{ "name": "Mezzame trust strip", "blocks": [{ "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

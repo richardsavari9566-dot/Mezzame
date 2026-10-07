@@ -1,0 +1,27 @@
+{%- comment -%}
+  Responsive image for Mezzame sections.
+  Params: image (required), sizes, widths, loading ('lazy' default), class, position (fallback object-position)
+  Renders an empty decorative panel when no image is set, so layouts keep their shape.
+{%- endcomment -%}
+{%- if image != blank -%}
+  {%- liquid
+    assign img_loading = loading | default: 'lazy'
+    assign img_sizes = sizes | default: '100vw'
+    assign img_widths = widths | default: '360, 540, 720, 900, 1200'
+    assign img_position = image.presentation.focal_point | default: position | default: '50% 50%'
+    assign img_style = 'object-position: ' | append: img_position
+  -%}
+  {{
+    image
+    | image_url: width: 1800
+    | image_tag:
+      widths: img_widths,
+      sizes: img_sizes,
+      loading: img_loading,
+      alt: image.alt,
+      class: class,
+      style: img_style
+  }}
+{%- else -%}
+  <div class="mzh-media-empty{% if class %} {{ class }}{% endif %}" role="presentation"></div>
+{%- endif -%}

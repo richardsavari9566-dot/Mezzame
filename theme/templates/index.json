@@ -1,0 +1,608 @@
+{
+  "sections": {
+    "hero": {
+      "type": "mzh-hero",
+      "settings": {
+        "aria_label": "Mezzame featured celebrations",
+        "autoplay_seconds": 7
+      },
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mezamme-731116dfeb85.webp",
+            "kicker": "Signature cakes · Crafted in Chennai",
+            "heading": "Cakes Worth\nShowing Up For.",
+            "text": "Freshly baked celebration cakes and layered desserts—crafted in small batches, finished by hand and made to be remembered.",
+            "button_1_label": "Shop Cakes",
+            "button_1_link": "#cakes",
+            "button_2_label": "Discover Mezzame",
+            "button_2_link": "#why"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mezamme-d88120efe3d9.png",
+            "kicker": "Celebrations, finished beautifully",
+            "heading": "Made for\nYour Moment.",
+            "text": "Statement cakes, thoughtful hampers and elegant packaging for birthdays, milestones and meaningful celebrations.",
+            "button_1_label": "Explore Gift Hampers",
+            "button_1_link": "#gifts",
+            "button_2_label": "Shop by Occasion",
+            "button_2_link": "#occasions"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ]
+    },
+    "trust": {
+      "type": "mzh-trust",
+      "settings": {
+        "aria_label": "Why customers choose Mezzame"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "text": "Freshly Baked Daily"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "text": "Premium Ingredients"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "text": "Delivery Across Chennai"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "text": "Eggless Options"
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "text": "Elegant Gift Packaging"
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "text": "Custom Celebration Cakes"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6"
+      ]
+    },
+    "cakes": {
+      "type": "mzh-products",
+      "settings": {
+        "anchor": "cakes",
+        "eyebrow": "Easy entry collection",
+        "heading": "Best Sellers Under ₹1,500",
+        "text": "Our most-loved cakes, freshly baked in Chennai and ready for your next celebration.",
+        "limit": 4,
+        "link_label": "View all cakes ↗"
+      },
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "label": "Best seller",
+            "image": "shopify://shop_images/mezamme-1d6f1e28e1eb.webp",
+            "title": "Signature Chocolate Cake",
+            "price_text": "From ₹1,250"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "label": "Eggless",
+            "image": "shopify://shop_images/mezamme-e7b5640dccfe.webp",
+            "title": "Fresh Fruit Celebration",
+            "price_text": "From ₹1,350"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "label": "Celebration",
+            "image": "shopify://shop_images/mezamme-efa1cdf71aed.webp",
+            "title": "Lace Celebration Cake",
+            "price_text": "From ₹1,450"
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "label": "Popular",
+            "image": "shopify://shop_images/mezamme-56232ed5661d.webp",
+            "title": "Milestone Vanilla Cake",
+            "price_text": "From ₹1,400"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4"
+      ]
+    },
+    "occasions": {
+      "type": "mzh-occasions",
+      "settings": {
+        "anchor": "occasions",
+        "eyebrow": "Shop by intent",
+        "heading": "Made for Every Moment",
+        "tab_occasion": "By Occasion",
+        "tab_relation": "By Relation"
+      },
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "Celebrate",
+            "title": "Birthdays",
+            "image": "shopify://shop_images/mezamme-e7b5640dccfe.webp"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "Together",
+            "title": "Anniversaries",
+            "image": "shopify://shop_images/mezamme-efa1cdf71aed.webp"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "New beginnings",
+            "title": "Baby Showers",
+            "image": "shopify://shop_images/mezamme-c73c0bf157ad.webp"
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "Milestones",
+            "title": "Congratulations",
+            "image": "shopify://shop_images/mezamme-56232ed5661d.webp"
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "At work",
+            "title": "Corporate",
+            "image": "shopify://shop_images/mezamme-50664836b9d6.webp"
+          }
+        },
+        "card_6": {
+          "type": "card",
+          "settings": {
+            "group": "occasion",
+            "eyebrow": "Seasonal",
+            "title": "Festive",
+            "image": "shopify://shop_images/mezamme-1d6f1e28e1eb.webp"
+          }
+        },
+        "card_7": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "For her",
+            "title": "Mom",
+            "image": "shopify://shop_images/mezamme-e7b5640dccfe.webp"
+          }
+        },
+        "card_8": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "For him",
+            "title": "Dad",
+            "image": "shopify://shop_images/mezamme-1d6f1e28e1eb.webp"
+          }
+        },
+        "card_9": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "Together",
+            "title": "Partner",
+            "image": "shopify://shop_images/mezamme-efa1cdf71aed.webp"
+          }
+        },
+        "card_10": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "Always",
+            "title": "Friends",
+            "image": "shopify://shop_images/mezamme-c73c0bf157ad.webp"
+          }
+        },
+        "card_11": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "At work",
+            "title": "Colleagues",
+            "image": "shopify://shop_images/mezamme-50664836b9d6.webp"
+          }
+        },
+        "card_12": {
+          "type": "card",
+          "settings": {
+            "group": "relation",
+            "eyebrow": "At home",
+            "title": "Family",
+            "image": "shopify://shop_images/mezamme-56232ed5661d.webp"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5",
+        "card_6",
+        "card_7",
+        "card_8",
+        "card_9",
+        "card_10",
+        "card_11",
+        "card_12"
+      ]
+    },
+    "gifts": {
+      "type": "mzh-gifts",
+      "settings": {
+        "anchor": "gifts",
+        "eyebrow": "Gifting collection",
+        "heading": "Gifts That Feel Considered",
+        "text": "Four hamper formats, each packed by hand with tissue, a handwritten note and a ribbon finish.",
+        "link_label": "View all hampers ↗",
+        "film_status": "Packaging film · 20 sec",
+        "film_eyebrow": "Made to be opened slowly",
+        "film_heading": "Watch the Gift Come Together",
+        "film_text": "Tissue placement, product arrangement, a handwritten note and the ribbon finish—every hamper is packed to be unwrapped slowly."
+      },
+      "blocks": {
+        "hamper_1": {
+          "type": "hamper",
+          "settings": {
+            "eyebrow": "Everyday gifting",
+            "title": "The Classic Box",
+            "text": "A considered mix of signature bakes for birthdays, thank-yous and thoughtful drop-ins.",
+            "price_text": "From ₹1,499",
+            "link_label": "Explore"
+          }
+        },
+        "hamper_2": {
+          "type": "hamper",
+          "settings": {
+            "eyebrow": "Celebration edit",
+            "title": "The Celebration Hamper",
+            "text": "Layered treats, petite cakes and finishing details designed for milestone gifting.",
+            "price_text": "From ₹2,299",
+            "link_label": "Explore"
+          }
+        },
+        "hamper_3": {
+          "type": "hamper",
+          "settings": {
+            "eyebrow": "Tea-time selection",
+            "title": "The Afternoon Edit",
+            "text": "Cookies, tea cakes and small-batch savouries curated for relaxed sharing.",
+            "price_text": "From ₹1,799",
+            "link_label": "Explore"
+          }
+        },
+        "hamper_4": {
+          "type": "hamper",
+          "settings": {
+            "eyebrow": "Corporate & festive",
+            "title": "The Grand Hamper",
+            "text": "A larger-format premium assortment with custom notes and brand-ready packaging.",
+            "price_text": "From ₹3,499",
+            "link_label": "Explore"
+          }
+        }
+      },
+      "block_order": [
+        "hamper_1",
+        "hamper_2",
+        "hamper_3",
+        "hamper_4"
+      ]
+    },
+    "offer": {
+      "type": "mzh-offer",
+      "settings": {
+        "eyebrow": "Gifting offer",
+        "heading": "Complimentary handwritten note",
+        "text": "On selected gift hampers above ₹1,999.",
+        "watermark": "20%",
+        "button_label": "Shop the offer",
+        "button_link": "#gifts"
+      }
+    },
+    "proof": {
+      "type": "mzh-proof",
+      "settings": {
+        "anchor": "why",
+        "eyebrow": "Why Mezzame",
+        "heading": "The Proof Is in the Details",
+        "text": "Every Mezzame cake is baked in small batches and finished by hand, so what arrives looks and tastes the way it should."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mezamme-7ce0ad6bdced.webp"
+          }
+        },
+        "block_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mezamme-1b91ae68aab0.webp"
+          }
+        },
+        "block_3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mezamme-f6c62765d9f4.webp"
+          }
+        },
+        "block_4": {
+          "type": "point",
+          "settings": {
+            "title": "Small-batch craftsmanship",
+            "text": "Real daily production, carefully finished instead of mass-produced."
+          }
+        },
+        "block_5": {
+          "type": "point",
+          "settings": {
+            "title": "Premium ingredients",
+            "text": "Quality chocolate, fresh cream and seasonal fruit chosen for flavour first."
+          }
+        },
+        "block_6": {
+          "type": "point",
+          "settings": {
+            "title": "Packaging worth gifting",
+            "text": "Every touchpoint—from the box to the note—designed to elevate the occasion."
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6"
+      ]
+    },
+    "film": {
+      "type": "mzh-film",
+      "settings": {
+        "eyebrow": "Behind every cake",
+        "heading": "See the hands behind the finish."
+      }
+    },
+    "reviews": {
+      "type": "mzh-reviews",
+      "settings": {
+        "eyebrow": "Customer proof",
+        "heading": "Loved at First Slice"
+      },
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "“The cake looked premium, travelled well and tasted even better than it looked.”",
+            "author": "Birthday order"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "“The hamper packaging felt thoughtful enough to gift without adding anything else.”",
+            "author": "Corporate gifting"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "“Ordering was easy and the finish felt genuinely special—not generic.”",
+            "author": "Anniversary cake"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ]
+    },
+    "faq": {
+      "type": "mzh-faq",
+      "settings": {
+        "anchor": "faq",
+        "eyebrow": "Useful answers",
+        "heading": "Before You Order",
+        "text": "Delivery, customisation, eggless options and lead times—answered before you check out."
+      },
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer same-day delivery?",
+            "answer": "<p>Same-day availability depends on the product, your delivery location and the time you order.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I customise a celebration cake?",
+            "answer": "<p>Yes. Custom celebration cakes need advance notice—message us with your design, size and date.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Are eggless cakes available?",
+            "answer": "<p>Yes. Eggless options are marked on each product and can be chosen when you order.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Which areas do you deliver to?",
+            "answer": "<p>We deliver across Chennai. Enter your pincode on any product page to check availability.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4"
+      ]
+    },
+    "order": {
+      "type": "mzh-cta",
+      "settings": {
+        "heading": "Something worth celebrating?",
+        "text": "Choose a cake, hamper or custom order and make the moment feel considered.",
+        "button_label": "Order Now",
+        "button_link": "#cakes"
+      }
+    },
+    "journal": {
+      "type": "mzh-journal",
+      "settings": {
+        "anchor": "journal",
+        "eyebrow": "The Mezzame journal",
+        "heading": "Ideas for Better Celebrations",
+        "link_label": "Read all stories ↗"
+      },
+      "blocks": {
+        "story_1": {
+          "type": "story",
+          "settings": {
+            "category": "Celebration guide",
+            "title": "How to choose the right cake for every kind of celebration"
+          }
+        },
+        "story_2": {
+          "type": "story",
+          "settings": {
+            "category": "Gifting",
+            "title": "Five thoughtful hamper ideas"
+          }
+        },
+        "story_3": {
+          "type": "story",
+          "settings": {
+            "category": "Behind the bake",
+            "title": "What makes a premium cake different"
+          }
+        }
+      },
+      "block_order": [
+        "story_1",
+        "story_2",
+        "story_3"
+      ]
+    },
+    "instagram": {
+      "type": "mzh-instagram",
+      "settings": {
+        "eyebrow": "@mezzame",
+        "heading": "Fresh From Instagram",
+        "link_label": "Follow Mezzame ↗"
+      },
+      "blocks": {
+        "tile_1": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_4": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_5": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_6": {
+          "type": "tile",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5",
+        "tile_6"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "cakes",
+    "occasions",
+    "gifts",
+    "offer",
+    "proof",
+    "film",
+    "reviews",
+    "faq",
+    "order",
+    "journal",
+    "instagram"
+  ]
+}

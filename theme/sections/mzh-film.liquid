@@ -1,0 +1,32 @@
+{%- comment -%}
+  Full-width "behind the cake" film. The video is only inserted when the visitor presses play,
+  so it costs nothing on page load. Without a video the section shows its poster and title only.
+{%- endcomment -%}
+<section class="mzh" data-mzh="film">
+  <div class="mzh-film">
+    {%- render 'mzh-image', image: section.settings.poster, sizes: '100vw' -%}
+    <div class="mzh-film__title">
+      {%- if section.settings.eyebrow != blank -%}<div class="mzh-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    {%- if section.settings.video != blank -%}
+      <button type="button" class="mzh-film__play" aria-label="Play film: {{ section.settings.heading | escape }}">▶</button>
+      <template>
+        {{ section.settings.video | video_tag: playsinline: true, preload: 'none', image_size: '1800x' }}
+      </template>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mezzame film",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Video" },
+    { "type": "image_picker", "id": "poster", "label": "Poster image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Behind every cake" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See the hands behind the finish." }
+  ],
+  "presets": [{ "name": "Mezzame film" }]
+}
+{% endschema %}

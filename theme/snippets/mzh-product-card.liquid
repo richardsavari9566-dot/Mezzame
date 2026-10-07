@@ -1,0 +1,23 @@
+{%- comment -%}
+  Params: url, image, title, label, price (cents) + price_varies, or price_text, attrs, loading
+{%- endcomment -%}
+{%- assign card_url = url | default: routes.all_products_collection_url -%}
+<article class="mzh-card" {{ attrs }}>
+  <a class="mzh-card__media" href="{{ card_url }}" tabindex="-1" aria-hidden="true">
+    {%- render 'mzh-image', image: image, sizes: '(min-width: 990px) 300px, (min-width: 641px) 50vw, 42vw', loading: loading -%}
+    {%- if label != blank -%}<span class="mzh-card__label">{{ label }}</span>{%- endif -%}
+  </a>
+  <div class="mzh-card__body">
+    <h3 class="mzh-card__title"><a href="{{ card_url }}">{{ title }}</a></h3>
+    <div class="mzh-card__price">
+      <span>
+        {%- if price != blank -%}
+          {%- if price_varies %}From {% endif -%}{{ price | money_without_trailing_zeros }}
+        {%- else -%}
+          {{ price_text }}
+        {%- endif -%}
+      </span>
+      <a class="mzh-card__add" href="{{ card_url }}" aria-label="Choose options for {{ title | escape }}">+</a>
+    </div>
+  </div>
+</article>

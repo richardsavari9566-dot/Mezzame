@@ -1,0 +1,44 @@
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "mzh_footer": {
+      "type": "mzh-footer",
+      "settings": {
+        "text": "Premium cakes, desserts and gifting—made visible, specific and worth showing up for.",
+        "tagline": "Proof, Not Promises."
+      },
+      "blocks": {
+        "column_1": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "mezzame-header"
+          }
+        },
+        "column_2": {
+          "type": "menu",
+          "settings": {
+            "heading": "Help",
+            "menu": "mezzame-help"
+          }
+        },
+        "column_3": {
+          "type": "text",
+          "settings": {
+            "heading": "Visit",
+            "text": "<p>Chennai, Tamil Nadu</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ]
+    }
+  },
+  "order": [
+    "mzh_footer"
+  ]
+}

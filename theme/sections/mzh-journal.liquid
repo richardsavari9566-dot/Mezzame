@@ -1,0 +1,82 @@
+{%- comment -%}
+  Journal. Shows the latest articles from the chosen blog; falls back to the sample story
+  blocks until articles exist. Hidden entirely when there is nothing to show.
+{%- endcomment -%}
+{%- liquid
+  assign blog = section.settings.blog
+  assign use_blog = false
+  if blog != blank and blog.articles_count > 0
+    assign use_blog = true
+  endif
+-%}
+{%- if use_blog or section.blocks.size > 0 -%}
+  <section class="mzh mzh-section" id="{{ section.settings.anchor | default: section.id }}">
+    <div class="mzh-container">
+      <div class="mzh-head">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}<div class="mzh-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+          <h2 class="mzh-title">{{ section.settings.heading }}</h2>
+        </div>
+        {%- if section.settings.link_label != blank -%}
+          <a class="mzh-link" href="{{ blog.url | default: section.settings.link | default: '/blogs/news' }}">{{ section.settings.link_label }}</a>
+        {%- endif -%}
+      </div>
+      <div class="mzh-blog">
+        {%- if use_blog -%}
+          {%- for article in blog.articles limit: 3 -%}
+            <article class="mzh-post">
+              <a class="mzh-post__media" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
+                {%- render 'mzh-image', image: article.image, sizes: '(min-width: 981px) 480px, 100vw' -%}
+              </a>
+              <div class="mzh-post__body">
+                {%- if article.tags.first -%}<small>{{ article.tags.first }}</small>{%- endif -%}
+                <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+              </div>
+            </article>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for block in section.blocks limit: 3 -%}
+            {%- assign href = block.settings.link | default: section.settings.link | default: '/blogs/news' -%}
+            <article class="mzh-post" {{ block.shopify_attributes }}>
+              <a class="mzh-post__media" href="{{ href }}" tabindex="-1" aria-hidden="true">
+                {%- render 'mzh-image', image: block.settings.image, sizes: '(min-width: 981px) 480px, 100vw' -%}
+              </a>
+              <div class="mzh-post__body">
+                {%- if block.settings.category != blank -%}<small>{{ block.settings.category }}</small>{%- endif -%}
+                <h3><a href="{{ href }}">{{ block.settings.title }}</a></h3>
+              </div>
+            </article>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mezzame journal",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "journal" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Mezzame journal" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ideas for Better Celebrations" },
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "When the blog has articles they replace the sample stories." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Read all stories ↗" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Sample story",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "category", "label": "Category", "default": "Celebration guide" },
+        { "type": "text", "id": "title", "label": "Title", "default": "How to choose the right cake for every kind of celebration" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mezzame journal", "blocks": [{ "type": "story" }, { "type": "story" }, { "type": "story" }] }]
+}
+{% endschema %}

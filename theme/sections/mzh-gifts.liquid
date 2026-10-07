@@ -1,0 +1,140 @@
+{%- comment -%}
+  Gift hampers ("Layout 2"): four hamper cards on the left, packing film panel on the right.
+  Cards show an illustrated hamper until an image or product is chosen. The film panel plays
+  the uploaded video when one is set, otherwise the CSS packing animation from the prototype.
+{%- endcomment -%}
+<section class="mzh mzh-section" id="{{ section.settings.anchor | default: section.id }}" data-mzh="pack">
+  <div class="mzh-container">
+    <div class="mzh-head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<div class="mzh-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+        <h2 class="mzh-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="mzh-copy">{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a class="mzh-link" href="{{ section.settings.link | default: section.settings.collection.url | default: routes.all_products_collection_url }}">
+          {{- section.settings.link_label -}}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="mzh-hampers">
+      <div class="mzh-hampers__cards">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign p = block.settings.product
+            assign image = block.settings.image | default: p.featured_image
+            assign title = block.settings.title
+            if p != blank and title == blank
+              assign title = p.title
+            endif
+            assign href = block.settings.link | default: p.url | default: section.settings.collection.url | default: routes.all_products_collection_url
+          -%}
+          <article class="mzh-hamper" {{ block.shopify_attributes }}>
+            {%- if image != blank -%}
+              <div class="mzh-hamper__art">
+                {%- render 'mzh-image', image: image, sizes: '(min-width: 1061px) 320px, (min-width: 641px) 50vw, 100vw' -%}
+              </div>
+            {%- else -%}
+              <div class="mzh-hamper__art mzh-hamper__art--css" role="presentation">
+                <div class="mzh-hamper__items"><span></span><span></span><span></span></div>
+                <div class="mzh-hamper__box"></div>
+                <div class="mzh-hamper__ribbon"></div>
+              </div>
+            {%- endif -%}
+            <div class="mzh-hamper__info">
+              {%- if block.settings.eyebrow != blank -%}<small>{{ block.settings.eyebrow }}</small>{%- endif -%}
+              <h3>{{ title }}</h3>
+              {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+              <div class="mzh-hamper__meta">
+                <span class="mzh-hamper__price">
+                  {%- if p != blank -%}
+                    {%- if p.price_varies %}From {% endif -%}{{ p.price_min | money_without_trailing_zeros }}
+                  {%- else -%}
+                    {{ block.settings.price_text }}
+                  {%- endif -%}
+                </span>
+                <a class="mzh-hamper__link" href="{{ href }}">
+                  {{- block.settings.link_label | default: 'Explore' -}}
+                  <span class="visually-hidden"> {{ title }}</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <article class="mzh-film-panel" aria-label="{{ section.settings.film_heading | escape }}">
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag: muted: true, loop: true, playsinline: true, preload: 'metadata', image_size: '1200x'
+          }}
+        {%- else -%}
+          <div class="mzh-pack" role="presentation">
+            <div class="mzh-pack__worktop"></div>
+            <div class="mzh-pack__tissue"></div>
+            <div class="mzh-pack__products"><i></i><i></i><i></i></div>
+            <div class="mzh-pack__box"></div>
+            <div class="mzh-pack__ribbon-v"></div>
+            <div class="mzh-pack__ribbon-h"></div>
+          </div>
+        {%- endif -%}
+        <button
+          type="button"
+          class="mzh-film-panel__toggle"
+          data-label-play="Play packing film"
+          data-label-pause="Pause packing film"
+          aria-label="Play packing film"
+        >▶</button>
+        {%- if section.settings.film_status != blank -%}
+          <div class="mzh-film-panel__status">{{ section.settings.film_status }}</div>
+        {%- endif -%}
+        <div class="mzh-film-panel__copy">
+          {%- if section.settings.film_eyebrow != blank -%}<small>{{ section.settings.film_eyebrow }}</small>{%- endif -%}
+          <h3>{{ section.settings.film_heading }}</h3>
+          {%- if section.settings.film_text != blank -%}<p>{{ section.settings.film_text }}</p>{%- endif -%}
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mezzame gift hampers",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "gifts" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Gifting collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifts That Feel Considered" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "collection", "id": "collection", "label": "Hampers collection" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "View all hampers ↗" },
+    { "type": "url", "id": "link", "label": "Link", "info": "Defaults to the hampers collection." },
+    { "type": "header", "content": "Packing film" },
+    { "type": "video", "id": "video", "label": "Video", "info": "Until a video is uploaded, an animated packing illustration is shown." },
+    { "type": "text", "id": "film_status", "label": "Badge", "default": "Packaging film · 20 sec" },
+    { "type": "text", "id": "film_eyebrow", "label": "Eyebrow", "default": "Made to be opened slowly" },
+    { "type": "text", "id": "film_heading", "label": "Heading", "default": "Watch the Gift Come Together" },
+    { "type": "textarea", "id": "film_text", "label": "Text" }
+  ],
+  "blocks": [
+    {
+      "type": "hamper",
+      "name": "Hamper",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product", "info": "Optional. Supplies image, title, price and link." },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Shows an illustrated hamper when empty." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Everyday gifting" },
+        { "type": "text", "id": "title", "label": "Title", "default": "The Classic Box" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "price_text", "label": "Price text", "default": "From ₹1,499", "info": "Used when no product is chosen." },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Explore" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mezzame gift hampers", "blocks": [{ "type": "hamper" }, { "type": "hamper" }, { "type": "hamper" }, { "type": "hamper" }] }]
+}
+{% endschema %}

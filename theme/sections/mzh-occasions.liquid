@@ -1,0 +1,90 @@
+{%- comment -%} Shop by intent: two tabs (occasion / relation), each a grid of image cards. {%- endcomment -%}
+{%- liquid
+  assign groups = 'occasion,relation' | split: ','
+  assign has_relation = false
+  for block in section.blocks
+    if block.settings.group == 'relation'
+      assign has_relation = true
+    endif
+  endfor
+-%}
+<section class="mzh mzh-section mzh--alt" id="{{ section.settings.anchor | default: section.id }}" data-mzh="tabs">
+  <div class="mzh-container">
+    <div class="mzh-head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<div class="mzh-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+        <h2 class="mzh-title">{{ section.settings.heading }}</h2>
+      </div>
+    </div>
+
+    {%- if has_relation -%}
+      <div class="mzh-tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}">
+        {%- for group in groups -%}
+          {%- assign label_key = 'tab_' | append: group -%}
+          <button
+            type="button"
+            class="mzh-tab"
+            role="tab"
+            id="{{ section.id }}-tab-{{ group }}"
+            aria-controls="{{ section.id }}-panel-{{ group }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            {% unless forloop.first %}tabindex="-1"{% endunless %}
+          >
+            {{- section.settings[label_key] -}}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- for group in groups -%}
+      <div
+        class="mzh-occasions"
+        id="{{ section.id }}-panel-{{ group }}"
+        {% if has_relation %}role="tabpanel" aria-labelledby="{{ section.id }}-tab-{{ group }}"{% endif %}
+        {% unless forloop.first %}hidden{% endunless %}
+      >
+        {%- for block in section.blocks -%}
+          {%- if block.settings.group == group -%}
+            {%- assign href = block.settings.link | default: block.settings.collection.url | default: routes.all_products_collection_url -%}
+            <a class="mzh-occasion" href="{{ href }}" {{ block.shopify_attributes }}>
+              {%- render 'mzh-image', image: block.settings.image, sizes: '(min-width: 981px) 400px, (min-width: 641px) 50vw, 100vw' -%}
+              <div class="mzh-occasion__content">
+                {%- if block.settings.eyebrow != blank -%}<small>{{ block.settings.eyebrow }}</small>{%- endif -%}
+                <h3>{{ block.settings.title }}</h3>
+              </div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mezzame occasions",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "occasions" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by intent" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for Every Moment" },
+    { "type": "text", "id": "tab_occasion", "label": "First tab label", "default": "By Occasion" },
+    { "type": "text", "id": "tab_relation", "label": "Second tab label", "default": "By Relation" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "select", "id": "group", "label": "Tab", "options": [{ "value": "occasion", "label": "First tab" }, { "value": "relation", "label": "Second tab" }], "default": "occasion" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Celebrate" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Birthdays" },
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Overrides the collection link." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mezzame occasions", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }]
+}
+{% endschema %}
